@@ -2,7 +2,6 @@ package com.ezpay;
 
 import com.ezpay.controller.*;
 
-import java.awt.Choice;
 import java.util.*;
 
 //import javax.swing.colorchooser.ColorChooserComponentFactory;
@@ -63,6 +62,6 @@ public class App
     	wantToContinue=sc.nextLine().charAt(0);
     	}while(wantToContinue == 'Y');
     	System.out.print("!!!Changes Saved");
-        
+        sc.close();
     }
 }

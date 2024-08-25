@@ -1,7 +1,5 @@
 package com.ezpay.repo;
 
-import static org.junit.Assert.assertFalse;
-
 import java.sql.*;
 import java.text.SimpleDateFormat;
 
