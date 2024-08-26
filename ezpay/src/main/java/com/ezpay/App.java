@@ -26,15 +26,14 @@ public class App
    	        System.out.print( "Enter new Name: " );
    	        String newName;
 	        newName=sc.nextLine();
-	        
-	        mdControllerObj.updateName(customerId,newName);
+	        mdControllerObj.updateData("master_data","name",customerId,newName);
 			break;
 		case 2:
    	        System.out.print( "Enter new Email: " );
    	        String newEmail=sc.nextLine();
    	        System.out.print("Enter your registered Mobile number: ");
    	        String oldMobileNumber=sc.nextLine();
-   	        mdControllerObj.updateEmail(customerId,newEmail,oldMobileNumber);
+   	        mdControllerObj.updateData("master_data","email","mobile_number",customerId,newEmail,oldMobileNumber);
    	        
 			break;
 		case 3:
@@ -42,7 +41,7 @@ public class App
    	        String newMobileNumber=sc.nextLine();
    	        System.out.print("Enter your registered Email address: ");
    	        String oldEmail=sc.nextLine();
-   	        mdControllerObj.updateEmail(customerId,newMobileNumber,oldEmail);
+   	        mdControllerObj.updateData("master_data","mobile_number","email",customerId,newMobileNumber,oldEmail);
 			
 			break;
 		
@@ -50,7 +49,7 @@ public class App
 			 System.out.print( "Enter new Profile Picture Url: " );
 	   	     String newProfilePictureUrl;
 		     newProfilePictureUrl=sc.nextLine();
-		     mdControllerObj.updateProfilePictureUrl(customerId, newProfilePictureUrl);
+		        mdControllerObj.updateData("master_data","profile_picture_url",customerId,newProfilePictureUrl);
 			
 			break;
 		default:
@@ -59,7 +58,7 @@ public class App
 		}
     	
     	System.out.print("\nWant to update more informations: ");
-    	wantToContinue=sc.nextLine().charAt(0);
+    	wantToContinue=sc.nextLine().toUpperCase().charAt(0);
     	}while(wantToContinue == 'Y');
     	System.out.print("!!!Changes Saved");
         sc.close();

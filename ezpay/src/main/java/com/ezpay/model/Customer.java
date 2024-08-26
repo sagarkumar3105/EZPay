@@ -15,7 +15,7 @@ public class Customer {
     private String upiId;       // VARCHAR2(10) - not null, unique
     private String accNo;       // VARCHAR2(16) - not null, unique
     private String ifscCode;    // VARCHAR2(11) - not null
-    private int accountType;    // NUMBER(1) - not null
+    private int accountType = 1;    // NUMBER(1) - not null
 
     // Constructors, getters, and setters
     public Customer()

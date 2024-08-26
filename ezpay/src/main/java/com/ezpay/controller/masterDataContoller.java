@@ -10,7 +10,17 @@ public class masterDataContoller {
 		this.mdUpdateObj=new UpdateMasterDataService();
 	}
 	
-	public void updateName(int customerId, String Name)
+	public void updateData(String tableName, String columnName, int customerId, String newValue)
+	{
+		mdUpdateObj.updateData(tableName,columnName,customerId, newValue);
+	}
+	
+	public void updateData(String tableName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue)
+	{
+		mdUpdateObj.updateData(tableName, columnName, verificationColumn, customerId, newValue, oldValue);
+	}
+	
+	/*public void updateName(int customerId, String Name)
 	{
 		mdUpdateObj.updateName(customerId, Name);
 	}
@@ -26,7 +36,7 @@ public class masterDataContoller {
 	public void updateProfilePictureUrl(int customerId, String newProfilePictureUrl)
 	{
 		mdUpdateObj.updateName(customerId, newProfilePictureUrl);
-	}
+	}*/
 	
 
 }

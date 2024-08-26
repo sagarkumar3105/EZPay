@@ -16,7 +16,17 @@ public class UpdateMasterDataService {
 		this.mdRepositoryObj = new MasterDataRepository();
 	}
 	
-	//--------------Update new name for user
+	public void updateData(String tableName, String columnName, int customerId, String newValue)
+	{
+		mdRepositoryObj.updateData(tableName,columnName,customerId, newValue);
+	}
+	
+	public void updateData(String tableName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue)
+	{
+		mdRepositoryObj.updateData(tableName, columnName,verificationColumn,customerId,newValue, oldValue );
+	}
+	
+	/*//--------------Update new name for user
 	public void updateName(int customerId, String newName)
 	{
 		
@@ -34,7 +44,7 @@ public class UpdateMasterDataService {
 	public void updateProfilePictureUrl(int customerId, String newProfilePictureUrl)
 	{
 		mdRepositoryObj.updateName(customerId, newProfilePictureUrl);
-	}
+	}*/
 	
 	
 	

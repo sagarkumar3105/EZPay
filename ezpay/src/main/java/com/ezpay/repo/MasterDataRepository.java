@@ -6,16 +6,28 @@ import java.text.SimpleDateFormat;
 
 import com.ezpay.model.*;
 
+
+// Class to interact with all the tables in Usecase 01
+
 public class MasterDataRepository {
+	
+	// Global Connection object
 	private Connection con;
 	
 	public MasterDataRepository()
 	{
-		try {this.con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","ezpay","admin");}
-		catch(Exception e) {System.out.println("Error Connecting with DB");}
+		try {
+			this.con = DriverManager.getConnection("jdbc:oracle:thin:@//localhost:1521/XE","ezpay","admin");
+		}catch(Exception e) 
+		{
+			System.out.println("Error Connecting with Database");}
 	}
 	
-	public Customer getUserById(int customerId) //by customer ID
+	/**
+	 * @param customerId -> Primary Key
+	 * @return object of Customer type
+	 */
+	public Customer getCustomerById(int customerId) //by customer ID
 	{
 		con = DatabaseConnection.getConnection();
 		String query= "SELECT * FROM master_data WHERE customer_id = ?";
@@ -40,6 +52,11 @@ public class MasterDataRepository {
 	
     private static final SimpleDateFormat DATE_TIME_FORMATTER = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
+	/**
+	 * @param rs -> result set which contains data from master_data Table
+	 * @return Customer type Object
+	 * @throws SQLException
+	 */
 	private Customer mapResultSetToMasterData(ResultSet rs) throws SQLException {
         Customer customerObj = new Customer();
         customerObj.setCustomerId(rs.getInt("CUSTOMER_ID"));
@@ -63,7 +80,86 @@ public class MasterDataRepository {
         return customerObj;
     }
 	
-	public void updateName(int customerId, String newName )
+	/**
+	 * @param tableName -> Table name to fetch data from
+	 * @param columnName -> Column to look for the value
+	 * @param customerId -> Primary key
+	 * @param newValue 	-> 	New Value to add in the table
+	 */
+	public void updateData(String tableName, String columnName, int customerId, String newValue)
+	{
+		Connection con = DatabaseConnection.getConnection();
+        String query = "UPDATE " +tableName + " SET " +columnName+" = "+ "? WHERE customer_id = ?";
+    	try{
+    		PreparedStatement statement = con.prepareStatement(query);
+    		statement.setString(1, newValue);
+    		statement.setInt(2, customerId);
+    		
+    		int rowsAffected = statement.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.printf("Value updated successfully for Customer ID: %d",customerId);
+            } else {
+                System.out.println("No user found with the provided ID.");
+            }
+    		
+    		
+    		
+    	} catch (Exception e) {
+			e.printStackTrace();
+    	}
+
+	}
+	
+	//Overloaded method to update after verification
+	/**
+	 * @param tableName -> Table name to fetch data from
+	 * @param columnName -> Column to look for the value
+	 * @param verificationColumn -> A column to look for a value which will be used to cross verify the data
+	 * @param customerId ->	primary key
+	 * @param newValue -> Value to replace
+	 * @param oldValue -> Value to cross verify
+	 */
+	public void updateData(String tableName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue)
+	{
+		Connection con = DatabaseConnection.getConnection();
+        String query = "UPDATE "+tableName+" SET " +columnName+ " = ? WHERE customer_id = ?";
+        String query2 = "SELECT " + verificationColumn + " from "+ tableName + " where customer_id=?";
+        try {
+        	PreparedStatement statement2 = con.prepareStatement(query2);
+        	statement2.setInt(1, customerId);
+        	
+        	ResultSet rs = statement2.executeQuery();
+    	   	
+        	if(rs.next())
+        	{
+        		String verificationValue = rs.getString(verificationColumn);
+	        	if(!(verificationValue.trim()).equals((oldValue).trim()))
+	        	{
+        		System.out.println("Sorry!!! The your entered detials don't match the registered details.\nValue update failed.");
+                return;
+	        	}
+        	}
+        	
+        	PreparedStatement statement = con.prepareStatement(query);
+        	statement.setString(1, newValue);
+    		statement.setInt(2, customerId);
+    		       	
+        	int rowsAffected = statement.executeUpdate();
+        	
+            if (rowsAffected > 0) {
+                System.out.printf("Value successfully for Customer ID: %d",customerId);
+            } else {
+                System.out.println("No user found with the provided ID.");
+            }
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+        
+	}
+	
+	
+/*	public void updateName(int customerId, String newName )
 	{
 		Connection con = DatabaseConnection.getConnection();
         String query = "UPDATE master_data SET name = ? WHERE customer_id = ?";
@@ -179,7 +275,7 @@ public class MasterDataRepository {
 			e.printStackTrace();
 		}
 
-	}
+	}*/
 	
 
 }
