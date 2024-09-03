@@ -1,21 +1,65 @@
 package com.ezpay.model;
 
+import javax.persistence.*;
+import java.sql.Blob;
+import java.sql.Timestamp;
+import java.util.Date;
+
+@Entity
+@Table(name = "master_data")
 public class Customer {
-    private int customerId;
-    private String name;
-    private String email;
-    private String mobileNumber;
-    private String address;
-    private String dob;
-    private String gender;
-    private String profileCreationDate;
-    private String profileLastUpdatedDate;
-    private String profilePictureUrl;
-    private boolean isProfileInfoSet;
-    private String upiId;       // VARCHAR2(10) - not null, unique
-    private String accNo;       // VARCHAR2(16) - not null, unique
-    private String ifscCode;    // VARCHAR2(11) - not null
-    private int accountType = 1;    // NUMBER(1) - not null
+
+
+	    @Id
+	    @GeneratedValue(strategy = GenerationType.IDENTITY)  // or GenerationType.SEQUENCE depending on your DB setup
+	    @Column(name = "customer_id")
+	    private int customerId;
+
+	    @Column(name = "name", nullable = false, length = 30)
+	    private String name;
+
+	    @Column(name = "email", nullable = false, unique = true, length = 255)
+	    private String email;
+
+	    @Column(name = "mobile_number", nullable = false, unique = true, length = 20)
+	    private String mobileNumber;
+
+	    @Column(name = "address", nullable = false, length = 255)
+	    private String address;
+
+
+	    @Column(name = "dob", nullable = false)
+	    private String dob;
+
+	    @Column(name = "gender", nullable = false, length = 10)
+	    private String gender;
+
+	    @Column(name = "profile_creation_date", nullable = false)
+	    private String profileCreationDate;
+
+	    @Column(name = "profile_last_updated_date", nullable = false)
+	    private String profileLastUpdatedDate;
+
+	    @Column(name = "profile_picture_url")
+	    private String profilePictureUrl;
+
+	    @Column(name = "is_profile_info_set", nullable = false)
+	    private boolean isProfileInfoSet;
+
+	    @Column(name = "upi_id", nullable = false, unique = true, length = 16)
+	    private String upiId;
+
+	    @Column(name = "acc_no", nullable = false, unique = true, length = 16)
+	    private String accNo;
+
+	    @Column(name = "ifsc_code", nullable = false, length = 11)
+	    private String ifscCode;
+
+	    @Column(name = "account_type", nullable = false)
+	    private int accountType;
+
+	    // Constructors, getters, and setters
+	
 
     // Constructors, getters, and setters
     public Customer()

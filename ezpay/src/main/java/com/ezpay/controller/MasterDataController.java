@@ -2,22 +2,22 @@ package com.ezpay.controller;
 
 import com.ezpay.service.UpdateMasterDataService;
 
-public class masterDataContoller {
+public class MasterDataController {
 	private UpdateMasterDataService mdUpdateObj;
 	
-	public masterDataContoller()
+	public MasterDataController()
 	{
 		this.mdUpdateObj=new UpdateMasterDataService();
 	}
 	
-	public void updateData(String tableName, String columnName, int customerId, String newValue)
+	public void updateData(String entityName, String columnName, int customerId, String newValue)
 	{
-		mdUpdateObj.updateData(tableName,columnName,customerId, newValue);
+		mdUpdateObj.updateData(entityName,columnName,customerId, newValue);
 	}
 	
-	public void updateData(String tableName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue)
+	public void updateData(String entityName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue)
 	{
-		mdUpdateObj.updateData(tableName, columnName, verificationColumn, customerId, newValue, oldValue);
+		mdUpdateObj.updateData(entityName, columnName, verificationColumn, customerId, newValue, oldValue);
 	}
 	
 	/*public void updateName(int customerId, String Name)

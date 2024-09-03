@@ -2,28 +2,25 @@ package com.ezpay.service;
 
 import com.ezpay.repo.MasterDataRepository;
 
-import java.util.*;
+//import com.ezpay.model.Customer;
 
 
 public class UpdateMasterDataService {
 	
-	static Scanner sc=new Scanner(System.in);
-
 	
 	private MasterDataRepository mdRepositoryObj;
 
-	public UpdateMasterDataService() {
-		this.mdRepositoryObj = new MasterDataRepository();
+	 public UpdateMasterDataService() {
+	        this.mdRepositoryObj = new MasterDataRepository();
 	}
-	
-	public void updateData(String tableName, String columnName, int customerId, String newValue)
-	{
-		mdRepositoryObj.updateData(tableName,columnName,customerId, newValue);
+
+	 public void updateData(String entityName, String columnName, int customerId, String newValue) {
+	     mdRepositoryObj.updateData(entityName,columnName, customerId, newValue);
 	}
-	
-	public void updateData(String tableName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue)
-	{
-		mdRepositoryObj.updateData(tableName, columnName,verificationColumn,customerId,newValue, oldValue );
+	    //	public void updateData() {
+
+	public void updateData(String entityName, String columnName, String verificationColumn, int customerId, String newValue, String oldValue) {
+	    mdRepositoryObj.updateData(entityName, columnName, verificationColumn, customerId, newValue, oldValue);
 	}
 	
 	/*//--------------Update new name for user
