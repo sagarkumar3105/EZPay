@@ -6,8 +6,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
-
+/**
+ * Repository interface for handling database operations related to the LoginData entity.
+ * Extends JpaRepository to provide standard CRUD operations for LoginData.
+ */
 @Repository
 public interface LoginDataRepository extends JpaRepository<LoginData, Long> {
+	/**
+     * Finds the login data associated with a specific customer.
+     *
+     * @param customer the customer whose login data is being searched
+     * @return an Optional containing the LoginData if found, or an empty Optional if no data is found
+     */
     Optional<LoginData> findByCustomer(Customer customer);
 }
