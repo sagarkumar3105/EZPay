@@ -6,6 +6,11 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
+/**
+ * Entity class representing a customer in the EzPay application.
+ * This class contains various attributes related to customer information, such as name, contact details,
+ * account information, and profile metadata.
+ */
 @Entity
 public class Customer {
     @Id
@@ -16,16 +21,16 @@ public class Customer {
     private String email;
     private String mobileNumber;
     private String address;
-    private LocalDateTime dob;
+    private LocalDateTime dob;   // Date of Birth
     private String gender;
     private LocalDateTime profileCreationDate;
     private LocalDateTime profileLastUpdatedDate;
     private String profilePictureUrl;
     private Boolean isProfileInfoSet;
-    private String upiId;
-    private String accNo;
-    private String ifscCode;
-
+    private String upiId;   // UPI ID for transactions
+    private String accNo;   // Bank account number
+    private String ifscCode; // IFSC code for bank transactions
+ 
     // Getters and Setters
     public Long getCustomerId() {
         return customerId;
@@ -139,9 +144,6 @@ public class Customer {
         this.ifscCode = ifscCode;
     }
 
-//	public void setPassword(String encode) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+
 }
 
