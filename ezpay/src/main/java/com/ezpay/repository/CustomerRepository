@@ -6,8 +6,25 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+/**
+ * Repository interface for handling database operations related to the Customer entity.
+ * Extends JpaRepository to provide standard CRUD operations.
+ */
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Long> {
+
+    /**
+     * Finds a customer by their email address.
+     *
+     * @param email the email address of the customer
+     * @return an Optional containing the customer if found, or an empty Optional if no customer is found
+     */
     Optional<Customer> findByEmail(String email);
+    /**
+     * Finds a customer by their mobile number.
+     *
+     * @param mobileNumber the mobile number of the customer
+     * @return an Optional containing the customer if found, or an empty Optional if no customer is found
+     */
     Optional<Customer> findByMobileNumber(String mobileNumber);
 }
