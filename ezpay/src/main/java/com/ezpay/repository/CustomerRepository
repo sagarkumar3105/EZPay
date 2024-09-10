@@ -1,8 +1,9 @@
-package com.EzPayApplication.repository;
+package com.ezpay.repository;
 
-import com.EzPayApplication.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import com.ezpay.entity.Customer;
 
 import java.util.Optional;
 
