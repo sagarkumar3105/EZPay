@@ -9,6 +9,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 
+/**
+ * Entity class representing the login data for a customer in the EzPay application.
+ * This class contains information related to the customer's login credentials, such as user ID and password hash.
+ */
 @Entity
 public class LoginData {
 	 @Id
@@ -18,9 +22,9 @@ public class LoginData {
 
     @OneToOne
     @JoinColumn(name = "customer_id")
-    private Customer customer;
+    private Customer customer;    // Links login data to the customer entity
 
-    private String passwordHash;
+    private String passwordHash;   // Stores the hashed password for security purposes
 
     // Getters and Setters
     public Long getUserId() {
