@@ -1,4 +1,4 @@
-package com.EzPayApplication.entity;
+package com.ezpay.entity;
 
 
 import jakarta.persistence.*;
