@@ -8,10 +8,10 @@
 		<version>3.2.9</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.EzPayApplication</groupId>
-	<artifactId>EzPayApplication</artifactId>
+	<groupId>com.ezpay</groupId>
+	<artifactId>ezpay</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>EzPayApplication</name>
+	<name>ezpay</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
